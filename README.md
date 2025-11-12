@@ -93,7 +93,7 @@
 
 ## 项目目录结构
 ```
-data-structure5
+data-structure
 ├── .vscode\                # VS Code配置文件
 │   ├── c_cpp_properties.json  # C/C++编译配置（MinGW路径：C:/mingw64/bin/gcc.exe）
 │   ├── launch.json           # 调试配置（C_core目录路径与可执行文件路径）
@@ -132,9 +132,11 @@ data-structure5
 4. NLTK数据集：下载`punkt`、`punkt_tab`、`stopwords`，放入`C:\Users\YourUsername\nltk_data`对应子目录（`tokenizers`/`corpora`）。
 
 ### 步骤1：编译C语言核心引擎
+0. 打开 .vscode\目录下的launch.json文件，修改"cwd"和"program"为本地地址。
+
 1. 打开命令行，进入`c_core`目录：  
    ```bash
-   cd E:\class-project\data-structure5\c_core
+   cd c_core
    ```
 <!-- 2. 执行分步编译命令（确保依赖顺序，生成`search_engine.exe`）：  
    ```bash
@@ -216,7 +218,7 @@ data-structure5
 2. 执行文本清洗脚本（生成`cleaned_docs`目录）：  
    ```bash
    # 进入Python目录
-   cd E:\class-project\data-structure5\python_preprocess
+   cd ..\python_preprocess
    # 执行清洗脚本
    python data_cleaning.py
    ```
