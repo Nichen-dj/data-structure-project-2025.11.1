@@ -26,7 +26,6 @@
 | `trie_insert`           | 插入词条到Trie树（仅处理小写英文字母，过滤非法字符）                     |
 | `trie_search`           | 检查词条是否为Trie树中的完整词（用于精确匹配判断）                       |
 | `trie_get_prefix_matches` | 获取所有以指定前缀开头的词条（前端实时建议功能的核心）                 |
-| `trie_save`/`trie_load` | Trie树序列化/反序列化（保存为`trie.dat`，避免重复构建索引）             |
 | `trie_free`             | 递归释放Trie树内存（避免内存泄漏）                                       |
 
 #### （2）倒排索引（`inverted_index.c`/`inverted_index.h`）
@@ -36,7 +35,6 @@
 | `inverted_index_create`         | 创建倒排索引（初始化哈希桶数组，指定桶数量与总文档数）                   |
 | `inverted_index_add_term`       | 向倒排索引添加词条（记录词条-文档ID-词频映射，支持同一文档词频累加）     |
 | `inverted_index_get_postings`   | 获取词条对应的Postings列表（包含所有含该词条的文档ID与词频）             |
-| `inverted_index_save`/`inverted_index_load` | 倒排索引序列化/反序列化（保存为`inverted_index.dat`）                 |
 | `inverted_index_free`           | 释放倒排索引内存（递归释放索引节点与Postings列表）                       |
 
 #### （3）TF-IDF排序（`tfidf.c`/`tfidf.h`）
@@ -223,8 +221,8 @@ data-structure
    python data_cleaning.py
    ```
 3. 执行高级预处理（需先完成NLTK数据集配置）：  
-    - 访问NLTK下载页面：`https://www.nltk.org/data.html` ，下载`punkt`、`punkt_bat`和`stopwords`数据集（用于分词和停用词过滤）；
-    - 放入`nltk_data`目录（默认路径：`C:\Users\YourUsername\nltk_data`）的`tokenizers`和`corpora`子目录下，（tokenizers：punkt、punkt_bat，corpora：stopwords）。
+    - 访问NLTK下载页面：`https://www.nltk.org/data.html` ，下载`punkt`、`punkt_tab`和`stopwords`数据集（用于分词和停用词过滤）；
+    - 放入`nltk_data`目录（默认路径：`C:\Users\YourUsername\nltk_data`）的`tokenizers`和`corpora`子目录下，（tokenizers：punkt、punkt_tab，corpora：stopwords）。
    ```bash
    # 执行高级预处理脚本
    python preprocess.py
@@ -256,7 +254,7 @@ data-structure
 
 ### 步骤5：运行前端页面
 1. 用VS Code打开`frontend`目录，右键`index.html`文件；  
-2. 选择“Open with Live Server”，浏览器自动打开前端页面（默认地址：`http://localhost:5500/frontend/index.html`）；  
+2. 选择“Open with Live Server”，浏览器自动打开前端页面（默认地址：`http://localhost:5501/frontend/index.html`）；  
 3. 测试核心功能：  
    - **实时建议**：输入“ai”（≥2个字符），建议列表显示以“ai”开头的词（如“artificial”“intelligence”）；  
    - **搜索功能**：输入“climate”并回车，页面显示含该词的文档列表，预览中“climate”字样高亮，结果按相关性分数降序排列；  
