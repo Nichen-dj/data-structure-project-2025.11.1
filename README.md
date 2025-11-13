@@ -1,7 +1,7 @@
 
 # 基于Trie树与倒排索引的文本搜索引擎原型
 ## 项目概述
-本项目是一款面向文本文档的搜索引擎原型，核心定位为**数据结构课程实践项目**，旨在通过结合**Trie树**与**倒排索引**两种经典数据结构，实现“前缀匹配查询+高效文档定位”的核心功能。  
+本项目是一款面向文本文档的搜索引擎原型，旨在通过结合**Trie树**与**倒排索引**两种经典数据结构，实现“前缀匹配查询+高效文档定位”的核心功能。  
 项目采用分层设计架构：  
 - **底层（C语言）**：实现Trie树、倒排索引、哈希表等核心数据结构与算法（确保性能与数据结构实践目标）；  
 - **中间层（Python）**：负责文本预处理、C引擎调用桥接、HTTP API服务（衔接底层算法与前端交互）；  
@@ -92,34 +92,34 @@
 ## 项目目录结构
 ```
 data-structure
-├── .vscode\                # VS Code配置文件
+├── .vscode\                   # VS Code配置文件
 │   ├── c_cpp_properties.json  # C/C++编译配置（MinGW路径：C:/mingw64/bin/gcc.exe）
-│   ├── launch.json           # 调试配置（C_core目录路径与可执行文件路径）
-│   └── settings.json         # C/C++ Runner插件配置（编译器/调试器路径、警告选项）
-├── c_core\                 # C语言核心引擎目录
-│   ├── trie.c/.h            # Trie树实现（插入/前缀匹配/序列化）
-│   ├── inverted_index.c/.h  # 倒排索引实现（哈希桶/Postings列表/序列化）
-│   ├── tfidf.c/.h           # TF-IDF排序实现（分数计算/文档排序）
-│   ├── search.c/.h          # 搜索逻辑实现（查询分词/前缀扩展/结果封装）
-│   ├── utils.c/.h           # 工具函数（文档读取、索引构建、停用词加载）
-│   ├── main.c               # 入口函数（支持3种模式：构建索引/交互搜索/命令行搜索）
-│   ├── search_engine.exe    # 编译后的C引擎可执行文件
-│   └── stop_words.txt       # 停用词列表（过滤"the""a"等无意义词，供utils.c加载）
-├── frontend\               # 前端目录
-│   ├── index.html           # 搜索界面HTML（搜索框/建议列表/结果区组件）
-│   ├── style.css            # 界面样式（响应式布局/加载动画/hover效果）
-│   └── script.js            # 交互逻辑（防抖建议/搜索执行/结果高亮）
-└── python_preprocess\       # Python数据处理与桥接目录
-    ├── data_cleaning.py     # 文本清洗脚本（生成cleaned_docs）
-    ├── preprocess.py        # 高级预处理脚本（NLTK分词/词干提取，生成processed_docs）
-    ├── build_bridge.py      # C引擎调用与API服务（索引构建/搜索/HTTP服务）
-    ├── sample_docs\         # 原始文档目录（存放待处理的英文.txt文档）
-    ├── cleaned_docs\        # 清洗后文档目录（索引构建默认数据源）
-    ├── processed_docs\      # 高级预处理后文档目录（可选数据源）
-    └── index_data\          # 索引文件目录（自动生成，C引擎默认读取路径）
-        ├── trie.dat         # Trie树序列化文件
+│   ├── launch.json            # 调试配置（C_core目录路径与可执行文件路径）
+│   └── settings.json          # C/C++ Runner插件配置（编译器/调试器路径、警告选项）
+├── c_core\                    # C语言核心引擎目录
+│   ├── trie.c/.h              # Trie树实现（插入/前缀匹配/序列化）
+│   ├── inverted_index.c/.h    # 倒排索引实现（哈希桶/Postings列表/序列化）
+│   ├── tfidf.c/.h             # TF-IDF排序实现（分数计算/文档排序）
+│   ├── search.c/.h            # 搜索逻辑实现（查询分词/前缀扩展/结果封装）
+│   ├── utils.c/.h             # 工具函数（文档读取、索引构建、停用词加载）
+│   ├── main.c                 # 入口函数（支持3种模式：构建索引/交互搜索/命令行搜索）
+│   ├── search_engine.exe      # 编译后的C引擎可执行文件
+│   └── stop_words.txt         # 停用词列表（过滤"the""a"等无意义词，供utils.c加载）
+├── frontend\                  # 前端目录
+│   ├── index.html             # 搜索界面HTML（搜索框/建议列表/结果区组件）
+│   ├── style.css              # 界面样式（响应式布局/加载动画/hover效果）
+│   └── script.js              # 交互逻辑（防抖建议/搜索执行/结果高亮）
+└── python_preprocess\         # Python数据处理与桥接目录
+    ├── data_cleaning.py       # 文本清洗脚本（生成cleaned_docs）
+    ├── preprocess.py          # 高级预处理脚本（NLTK分词/词干提取，生成processed_docs）
+    ├── build_bridge.py        # C引擎调用与API服务（索引构建/搜索/HTTP服务）
+    ├── sample_docs\           # 原始文档目录（存放待处理的英文.txt文档）
+    ├── cleaned_docs\          # 清洗后文档目录（索引构建默认数据源）
+    ├── processed_docs\        # 高级预处理后文档目录（可选数据源）
+    └── index_data\            # 索引文件目录（自动生成，C引擎默认读取路径）
+        ├── trie.dat           # Trie树序列化文件
         ├── inverted_index.dat # 倒排索引序列化文件
-        └── doc_paths.dat    # 文档路径列表文件（记录文档ID与绝对路径映射）
+        └── doc_paths.dat      # 文档路径列表文件（记录文档ID与绝对路径映射）
 ```
 
 ## 项目运行步骤
